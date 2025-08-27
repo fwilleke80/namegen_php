@@ -6,7 +6,7 @@ ini_set('log_errors', '1');
 @set_time_limit(5);                    // short runtime
 @ini_set('memory_limit', '64M'); // small memory cap is fine for this
 
-header("Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'; style-src 'self' 'unsafe-inline'");
+header("Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'");
 header('X-Frame-Options: DENY');
 header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: no-referrer');
@@ -23,19 +23,21 @@ header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
 /** @var string */
 const SCRIPTTITLE = 'German Name Generator';
 /** @var string */
-const SCRIPTVERSION = '1.8.2';
+const SCRIPTVERSION = '1.8.3';
 /** @var string */
 const DATAFILENAME = 'namegen_data.json';
 
 /** @var float Default thresholds (match your current code) */
-const DEF_THRESH_FIRST_EXTRA = 0.31;
+const DEF_THRESH_FIRST_EXTRA = 0.28;
 const DEF_THRESH_DOUBLE_LAST = 0.18;
-const DEF_THRESH_LONGER_LAST = 0.30;
-const DEF_THRESH_NOBILITY    = 0.29;
+const DEF_THRESH_LONGER_LAST = 0.28;
+const DEF_THRESH_NOBILITY    = 0.20;
 
 /** @var int Default last name syllable range (Python: randrange(2,4) → min=2, maxExclusive=4) */
 const DEF_MIN_LASTNAME_SYLL  = 2;
 const DEF_MAX_LASTNAME_SYLLX = 4;	// exclusive upper bound
+
+const DEF_COUNT = 10;
 
 // --------------------------------------------------------------------------------------
 // Utilities
@@ -441,7 +443,7 @@ function getInt(string $key, int $def, int $min, int $max): int
 }
 
 $gender = isset($_GET['gender']) ? (string)$_GET['gender'] : 'random';
-$count = getInt('count', 1, 1, 999);
+$count = getInt('count', DEF_COUNT, 1, 999);
 $modeStr = isset($_GET['mode']) ? (string)$_GET['mode'] : '';
 $stats = isset($_GET['stats']);
 
@@ -555,6 +557,33 @@ mt_srand((int)microtime(true));
 		document.getElementById('out_min_last').value    = String(DEF.min_last);
 		document.getElementById('out_max_last').value    = String(DEF.max_last);
 	}
+
+	document.addEventListener('DOMContentLoaded', function ()
+	{
+		const KEY = 'namegen.paramsOpen';
+		const d = document.getElementById('genparams');
+		if (!d) { return; }
+
+		// Restore last state
+		try
+		{
+			if (localStorage.getItem(KEY) === '1')
+			{
+				d.setAttribute('open', '');
+			}
+		}
+		catch (_) {}
+
+		// Save on toggle
+		d.addEventListener('toggle', function ()
+		{
+			try
+			{
+				localStorage.setItem(KEY, d.open ? '1' : '0');
+			}
+			catch (_) {}
+		});
+	});
 	</script>
 </head>
 <body>
@@ -689,5 +718,14 @@ mt_srand((int)microtime(true));
 			?></pre>
 		<?php endif; ?>
 	<?php endif; ?>
+	<?php
+	$otherApp = __DIR__ . '/../citynamegen/index.php';
+
+	if (file_exists($otherApp))
+	{
+		echo '<p>Versuch mal den <a href="../citynamegen/">City Name Generator</a></p>';
+	}
+	?>
+	<p class="footer">&copy; 2025 by <a href="https://www.frankwilleke.de">www.frankwilleke.de</a></p>
 </body>
 </html>
