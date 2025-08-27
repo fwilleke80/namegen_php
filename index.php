@@ -12,7 +12,7 @@ declare(strict_types=1);
 /** @var string */
 const SCRIPTTITLE = 'German Name Generator';
 /** @var string */
-const SCRIPTVERSION = '1.8 (PHP, web)';
+const SCRIPTVERSION = '1.8.2 (PHP, web)';
 /** @var string */
 const DATAFILENAME = 'namegen_data.json';
 
