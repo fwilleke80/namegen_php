@@ -23,7 +23,7 @@ header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
 /** @var string */
 const SCRIPTTITLE = 'German Name Generator';
 /** @var string */
-const SCRIPTVERSION = '1.8.2 (PHP, web)';
+const SCRIPTVERSION = '1.8.2';
 /** @var string */
 const DATAFILENAME = 'namegen_data.json';
 
