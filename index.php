@@ -582,7 +582,7 @@ mt_srand((int)microtime(true));
 		<hr>
 
 		<details id="genparams" class="params">
-			<summary>Generator parameters</summary>
+			<summary>Parameter</summary>
 
 			<div class="grid">
 				<div>
