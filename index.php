@@ -1,6 +1,17 @@
 <?php
 declare(strict_types=1);
 
+ini_set('display_errors', '0');  // don’t leak stack traces
+ini_set('log_errors', '1');
+@set_time_limit(5);                    // short runtime
+@ini_set('memory_limit', '64M'); // small memory cap is fine for this
+
+header("Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'; style-src 'self' 'unsafe-inline'");
+header('X-Frame-Options: DENY');
+header('X-Content-Type-Options: nosniff');
+header('Referrer-Policy: no-referrer');
+header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
+
 /// @brief	German Name Generator (PHP port, web-only) with tunable sliders
 /// @details	Loads namegen_data.json from the same folder and renders a form to generate names or show stats.
 /// @author	Punga
