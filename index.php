@@ -723,7 +723,7 @@ mt_srand((int)microtime(true));
 
 	if (file_exists($otherApp))
 	{
-		echo '<p>Versuch mal den <a href="../citynamegen/">City Name Generator</a></p>';
+		echo '<p>Versuch mal den <a href="../citynamegen/">City Name Generator</a>!</p>';
 	}
 	?>
 	<p class="footer">&copy; 2025 by <a href="https://www.frankwilleke.de">www.frankwilleke.de</a></p>
