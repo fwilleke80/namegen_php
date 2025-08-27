@@ -1,4 +1,4 @@
-# German Name Generator (PHP, Web)
+# German Name Generator
 
 This is a **PHP port** of the original Python *namegen* script.  
 It generates random German-style names from syllable sets stored in a JSON file.  
