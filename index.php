@@ -631,7 +631,7 @@ mt_srand((int)microtime(true));
 						<input id="t_first_extra" name="t_first_extra" type="range" min="0" max="1" step="0.01" value="<?= htmlspecialchars((string)$t_first_extra, ENT_QUOTES) ?>">
 						<output id="out_first_extra"></output>
 					</div>
-					<p class="small">Praktischer Wertebereich: 0.00–0.60 (Default <?= number_format(DEF_THRESH_FIRST_EXTRA, 2) ?>)</p>
+					<p class="small">Typischer Wertebereich: 0.00–0.60 (Default <?= number_format(DEF_THRESH_FIRST_EXTRA, 2) ?>)</p>
 				</div>
 
 				<div>
@@ -640,7 +640,7 @@ mt_srand((int)microtime(true));
 						<input id="t_double_last" name="t_double_last" type="range" min="0" max="1" step="0.01" value="<?= htmlspecialchars((string)$t_double_last, ENT_QUOTES) ?>">
 						<output id="out_double_last"></output>
 					</div>
-					<p class="small">Praktischer Wertebereich: 0.00–0.40 (Default <?= number_format(DEF_THRESH_DOUBLE_LAST, 2) ?>)</p>
+					<p class="small">Typischer Wertebereich: 0.00–0.40 (Default <?= number_format(DEF_THRESH_DOUBLE_LAST, 2) ?>)</p>
 				</div>
 
 				<div>
@@ -649,7 +649,7 @@ mt_srand((int)microtime(true));
 						<input id="t_longer_last" name="t_longer_last" type="range" min="0" max="1" step="0.01" value="<?= htmlspecialchars((string)$t_longer_last, ENT_QUOTES) ?>">
 						<output id="out_longer_last"></output>
 					</div>
-					<p class="small">Praktischer Wertebereich: 0.00–0.60 (Default <?= number_format(DEF_THRESH_LONGER_LAST, 2) ?>)</p>
+					<p class="small">Typischer Wertebereich: 0.00–0.60 (Default <?= number_format(DEF_THRESH_LONGER_LAST, 2) ?>)</p>
 				</div>
 
 				<div>
@@ -658,7 +658,7 @@ mt_srand((int)microtime(true));
 						<input id="t_nobility" name="t_nobility" type="range" min="0" max="1" step="0.01" value="<?= htmlspecialchars((string)$t_nobility, ENT_QUOTES) ?>">
 						<output id="out_nobility"></output>
 					</div>
-					<p class="small">Praktischer Wertebereich: 0.00–0.50 (Default <?= number_format(DEF_THRESH_NOBILITY, 2) ?>)</p>
+					<p class="small">Typischer Wertebereich: 0.00–0.50 (Default <?= number_format(DEF_THRESH_NOBILITY, 2) ?>)</p>
 				</div>
 			</div>
 
