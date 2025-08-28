@@ -23,7 +23,7 @@ header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
 /** @var string */
 const SCRIPTTITLE = 'German Name Generator';
 /** @var string */
-const SCRIPTVERSION = '1.9.0';
+const SCRIPTVERSION = '1.9.1';
 /** @var string */
 const DATAFILENAME = 'namegen_data.json';
 
@@ -884,7 +884,7 @@ mt_srand((int)microtime(true));
 				for ($i = 0; $i < $count; ++$i)
 				{
 					$prefix = ($count > 1) ? str_pad((string)($i + 1), 2, ' ', STR_PAD_LEFT) . '. ' : '';
-					$name = $prefix . $gen->generate($gender, $mode) . "\n";
+					$name = $gen->generate($gender, $mode) . "\n";
 
 					echo '<li>';
 					echo    '<button class="save" data-name="' . htmlspecialchars($name, ENT_QUOTES) . '" title="Favorit speichern">☆</button> ';
