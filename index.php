@@ -12,9 +12,9 @@ header('X-Content-Type-Options: nosniff');
 header('Referrer-Policy: no-referrer');
 header('Permissions-Policy: geolocation=(), microphone=(), camera=()');
 
-/// @brief	German Name Generator (PHP port, web-only) with tunable sliders
-/// @details	Loads namegen_data.json from the same folder and renders a form to generate names or show stats.
-/// @author	Punga
+/// @brief   German Name Generator (PHP port, web-only) with tunable sliders
+/// @details Loads namegen_data.json from the same folder and renders a form to generate names or show stats.
+/// @author  Frank Willeke
 
 // --------------------------------------------------------------------------------------
 // Config / Metadata
@@ -27,13 +27,13 @@ const SCRIPTVERSION = '1.9.1';
 /** @var string */
 const DATAFILENAME = 'namegen_data.json';
 
-/** @var float Default thresholds (match your current code) */
+/** @var float Default thresholds */
 const DEF_THRESH_FIRST_EXTRA = 0.28;
 const DEF_THRESH_DOUBLE_LAST = 0.18;
 const DEF_THRESH_LONGER_LAST = 0.28;
 const DEF_THRESH_NOBILITY    = 0.20;
 
-/** @var int Default last name syllable range (Python: randrange(2,4) → min=2, maxExclusive=4) */
+/** @var int Default last name syllable range */
 const DEF_MIN_LASTNAME_SYLL  = 2;
 const DEF_MAX_LASTNAME_SYLLX = 4;	// exclusive upper bound
 
@@ -44,8 +44,8 @@ const DEF_COUNT = 10;
 // --------------------------------------------------------------------------------------
 
 /**
- * @brief	Random float in [0,1).
- * @return	float
+ * @brief Random float in [0,1).
+ * @return float
  */
 function frand(): float
 {
@@ -53,7 +53,7 @@ function frand(): float
 }
 
 /**
- * @brief	Safe array_get with default.
+ * @brief Safe array_get with default.
  * @param[in] arr
  * @param[in] key
  * @param[in] default
@@ -65,9 +65,9 @@ function array_get(array $arr, string $key, mixed $default = null): mixed
 }
 
 /**
- * @brief	Title-case helper (UTF-8).
+ * @brief Title-case helper (UTF-8).
  * @param[in] s
- * @return	string
+ * @return string
  */
 function titlecase(string $s): string
 {
@@ -79,7 +79,7 @@ function titlecase(string $s): string
 // --------------------------------------------------------------------------------------
 
 /**
- * @brief	Name generator core class with runtime-tunable parameters.
+ * @brief Name generator core class with runtime-tunable parameters.
  */
 final class NameGenerator
 {
@@ -102,9 +102,9 @@ final class NameGenerator
 	private array $_nobilityPrefixes = [];
 
 	/**
-	 * @brief	Load JSON data file.
-	 * @param[in] filePath Absolute or relative path.
-	 * @return	bool True on success.
+	 * @brief Load JSON data file.
+	 * @param[in] filePath Absolute or relative path
+	 * @return bool True on success
 	 */
 	public function loadData(string $filePath): bool
 	{
@@ -136,9 +136,9 @@ final class NameGenerator
 	}
 
 	/**
-	 * @brief	Check if gender is present in data.
+	 * @brief Check if gender is present in data.
 	 * @param[in] gender
-	 * @return	bool
+	 * @return bool
 	 */
 	private function hasGender(string $gender): bool
 	{
@@ -151,12 +151,12 @@ final class NameGenerator
 	}
 
 	/**
-	 * @brief	Override thresholds at runtime (values will be clamped).
+	 * @brief Override thresholds at runtime (values will be clamped).
 	 * @param[in] firstExtra Threshold for extra firstname syllable
 	 * @param[in] doubleLast Threshold for hyphenated double last name
 	 * @param[in] longerLast Threshold for using 2–(max-1) syllables instead of 2
 	 * @param[in] nobility   Threshold for adding a nobility prefix
-	 * @return	void
+	 * @return void
 	 */
 	public function setThresholds(float $firstExtra, float $doubleLast, float $longerLast, float $nobility): void
 	{
@@ -167,10 +167,10 @@ final class NameGenerator
 	}
 
 	/**
-	 * @brief	Set last name syllable range (max is exclusive; clamps and normalizes).
+	 * @brief Set last name syllable range (max is exclusive; clamps and normalizes).
 	 * @param[in] minIncl Minimum syllables (inclusive)
 	 * @param[in] maxExcl Maximum syllables (exclusive)
-	 * @return	void
+	 * @return void
 	 */
 	public function setLastnameSyllableRange(int $minIncl, int $maxExcl): void
 	{
@@ -181,8 +181,8 @@ final class NameGenerator
 	}
 
 	/**
-	 * @brief	Compute stats like the Python script.
-	 * @return	array<string, mixed>
+	 * @brief Compute stats like the Python script.
+	 * @return array<string, mixed>
 	 */
 	public function computeStats(): array
 	{
@@ -243,9 +243,9 @@ final class NameGenerator
 	}
 
 	/**
-	 * @brief	Print stats in a human-friendly way (mirrors Python).
+	 * @brief Print stats in a human-friendly way (mirrors Python).
 	 * @param[in] stats
-	 * @return	void
+	 * @return void
 	 */
 	public function printStatistics(array $stats): void
 	{
@@ -281,9 +281,9 @@ final class NameGenerator
 	}
 
 	/**
-	 * @brief	Generate a random firstname for gender.
+	 * @brief Generate a random firstname for gender.
 	 * @param[in] gender 'male'|'female'
-	 * @return	string
+	 * @return string
 	 */
 	public function generateFirstname(string $gender = 'male'): string
 	{
@@ -298,8 +298,8 @@ final class NameGenerator
 	}
 
 	/**
-	 * @brief	Generate a random lastname.
-	 * @return	string
+	 * @brief Generate a random lastname.
+	 * @return string
 	 */
 	public function generateLastname(): string
 	{
@@ -326,9 +326,9 @@ final class NameGenerator
 	}
 
 	/**
-	 * @brief	Get a random nobility prefix for gender.
+	 * @brief Get a random nobility prefix for gender.
 	 * @param[in] gender
-	 * @return	string
+	 * @return string
 	 */
 	public function getNobilityPrefix(string $gender = 'male'): string
 	{
@@ -341,9 +341,9 @@ final class NameGenerator
 	}
 
 	/**
-	 * @brief	Normalize gender and handle 'random'.
+	 * @brief Normalize gender and handle 'random'.
 	 * @param[in] gender 'male'|'female'|'random'|'m'|'f'|'r'
-	 * @return	string 'male'|'female'
+	 * @return string 'male'|'female'
 	 */
 	public function safeGender(string $gender): string
 	{
@@ -361,10 +361,10 @@ final class NameGenerator
 	}
 
 	/**
-	 * @brief	Generate a full name or partial based on mode.
+	 * @brief Generate a full name or partial based on mode.
 	 * @param[in] gender 'male'|'female'|'random'|'m'|'f'|'r'
 	 * @param[in] mode   0=full, 1=firstname only, 2=lastname only
-	 * @return	string
+	 * @return string
 	 */
 	public function generate(string $gender, int $mode = 0): string
 	{
@@ -404,10 +404,10 @@ final class NameGenerator
 // --------------------------------------------------------------------------------------
 
 /**
- * @brief	Read a float GET param in [0,1], fall back to default.
+ * @brief Read a float GET param in [0,1], fall back to default.
  * @param[in] key
  * @param[in] def
- * @return	float
+ * @return float
  */
 function get01(string $key, float $def): float
 {
@@ -424,12 +424,12 @@ function get01(string $key, float $def): float
 }
 
 /**
- * @brief	Read an int GET param within a range, fall back to default.
+ * @brief Read an int GET param within a range, fall back to default.
  * @param[in] key
  * @param[in] def
  * @param[in] min
  * @param[in] max
- * @return	int
+ * @return int
  */
 function getInt(string $key, int $def, int $min, int $max): int
 {
@@ -764,8 +764,8 @@ mt_srand((int)microtime(true));
 			<div>
 				<label for="gender">Geschlecht</label>
 				<select id="gender" name="gender">
-					<option value="female"<?= $gender === 'female' ? ' selected' : '' ?>>Weiblich</option>
-					<option value="male"<?= $gender === 'male' ? ' selected' : '' ?>>M&auml;nnlich</option>
+					<option value="female"<?= $gender === 'female' ? ' selected' : '' ?>>Nur weiblich</option>
+					<option value="male"<?= $gender === 'male' ? ' selected' : '' ?>>Nur m&auml;nnlich</option>
 					<option value="random"<?= $gender === 'random' ? ' selected' : '' ?>>Zuf&auml;llig</option>
 				</select>
 			</div>
