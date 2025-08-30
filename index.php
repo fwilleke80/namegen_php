@@ -919,6 +919,11 @@ mt_srand((int)microtime(true));
 	{
 		echo '<p>Versuch mal den <a href="../citynamegen/">City Name Generator</a>!</p>';
 	}
+	$otherApp = __DIR__ . '/../tkkg_generator/index.php';
+	if (file_exists($otherApp))
+	{
+		echo '<p>Oder koste mal den <a href="../tkkg_generator/">TKKG Folgentitel Generator</a>!</p>';
+	}
 	?>
 	<p class="footer">&copy; 2025 by <a href="https://www.frankwilleke.de">www.frankwilleke.de</a></p>
 </body>
